@@ -1,0 +1,6 @@
+1|Maaz|21|M|Fever
+2|Ahmad|56|M|Flu
+3|Junaid|25|M|Alopecia
+4|Fatima|45|F|Kidney Infection
+6|sara|26|F|kidney Stone
+23|Inshal|23|M|Headache

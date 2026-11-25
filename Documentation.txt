@@ -1,0 +1,91 @@
+OEL 3 - HOSPITAL APPOINTMENT AND PATIENT MANAGEMENT SYSTEM
+Brief Project Documentation
+
+1. Objective
+The application manages patient records and hospital appointments. It supports
+patient registration, updating, deletion, searching, appointment booking,
+FIFO processing, cancellation, sorting, and permanent file storage.
+
+2. Tools and Technologies
+- Programming language: C++
+- IDE: Code::Blocks or Microsoft Visual Studio
+- Standard: C++11 or later
+- Files: patients.txt and appointments.txt
+
+3. Data Structures
+A. Singly Linked List
+Patient records are stored in dynamically allocated Patient nodes. Each node
+contains patient details and a pointer to the next node. This supports
+insertion, traversal, searching, updating, and deletion.
+
+B. Array of Structures
+Appointments are stored in a fixed-size array of Appointment structures.
+The maximum capacity is 100 appointments. Appointment IDs are maintained in
+ascending order so binary search can be used.
+
+C. Linked Queue
+A linked queue stores the IDs of appointments whose status is Scheduled.
+New appointments are added at the rear and processed from the front, following
+FIFO (First In, First Out). Cancelling an appointment removes it from the queue.
+
+4. Algorithms
+- Linear Search: Finds a patient by ID and searches patient names (including
+  partial, case-insensitive matches).
+- Binary Search: Finds an appointment by ID. The appointment array is sorted
+  by ID; records loaded from file are sorted by ID before searching.
+- Bubble Sort: Displays patients alphabetically by name using a temporary copy.
+- Selection Sort: Displays appointments by date and time using a temporary copy.
+- Insertion Sort: Used during file loading to restore appointment-ID order.
+
+5. Appointment Status
+- Scheduled: Appointment is waiting in the linked queue.
+- Completed: Appointment has been processed from the front of the queue.
+- Cancelled: Appointment was cancelled and removed from the queue.
+Only Scheduled appointments can be processed or cancelled.
+
+6. File Handling
+At startup, the application reads patient records from patients.txt and
+appointment records from appointments.txt. After a successful data change,
+both files are rewritten with the current records. This allows data to remain
+available after the program is closed and restarted.
+
+File format:
+patients.txt:
+ID|Name|Age|Gender|Disease
+
+appointments.txt:
+AppointmentID|PatientID|Doctor|Date|Time|Status
+
+The vertical bar character is reserved as a field separator and is therefore
+not accepted in user-entered text fields.
+
+7. Validation and Boundary Conditions
+The program validates patient IDs, duplicate IDs, ages (0-120), gender,
+required text, dates, appointment times (08:00-19:59), patient existence,
+duplicate doctor time slots, appointment capacity, appointment existence,
+and appointment status. It also handles an empty queue and unavailable
+appointment cancellation.
+
+8. Complexity (high-level)
+- Patient linear search: O(n)
+- Appointment binary search: O(log n)
+- Patient bubble sort: O(n^2)
+- Appointment selection sort: O(n^2)
+- Queue enqueue/dequeue: O(1)
+- Patient linked-list traversal: O(n)
+
+9. How to Compile and Run
+Code::Blocks:
+1. Open Code::Blocks.
+2. Select File > New > Empty file (or create a Console Application).
+3. Paste HospitalManagement.cpp into the source file.
+4. Save the file.
+5. Select Build > Build and Run (or press F9).
+
+Visual Studio:
+1. Create a new Console App (C++) project.
+2. Add HospitalManagement.cpp to the project.
+3. Build and run the project.
+
+Keep patients.txt and appointments.txt in the program's working directory.
+If the files do not exist on the first run, the program starts with empty data.

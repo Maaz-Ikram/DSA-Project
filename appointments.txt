@@ -1,0 +1,5 @@
+1|1|Dr Moiz|2026-07-06|11:30|Completed
+2|2|Dr Abuzar|2026-07-08|13:00|Scheduled
+3|3|Dr Ikram|2026-07-07|15:20|Scheduled
+4|4|Dr Ikram|2026-07-07|16:00|Cancelled
+5|4|Dr Ali|2026-08-16|15:30|Scheduled

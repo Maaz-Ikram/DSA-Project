@@ -1,0 +1,262 @@
+OEL 3 - TEST CASES
+Hospital Appointment and Patient Management System
+ TC01 – Register a valid patient
+Input:
+1
+101
+Ali Khan
+25
+M
+Flu
+
+Expected:
+Patient registered successfully.
+
+Actual:
+Patient registered successfully.
+
+Status: PASS
+
+TC02 – Duplicate patient ID
+Precondition: Patient ID 101 already exists.
+Input:
+1
+101
+Sara Ahmed
+30
+F
+Fever
+
+Expected:
+Error: Patient ID already exists.
+
+Actual:
+Error: Patient ID already exists.
+
+Status: PASS
+
+TC03 – Invalid patient age (boundary)
+Input:
+1
+102
+Usman
+121
+M
+Cough
+
+Expected:
+Error: Invalid age.
+
+Actual:
+Error: Invalid age.
+
+Status: PASS
+
+TC04 – Search for an existing patient
+Precondition: Patient ID 101 exists.
+
+Input:
+4
+101
+
+Expected:
+The patient record for ID 101 is displayed.
+
+Actual:
+The patient record for ID 101 is displayed, including the patient's details.
+
+Status: PASS
+
+TC05 – Search for a missing patient
+Input:
+4
+999
+
+Expected:
+Patient not found.
+
+Actual:
+Patient not found.
+
+Status: PASS
+
+TC06 – Book a valid appointment
+Precondition: Patient ID 101 exists.
+
+Input:
+8
+101
+Dr Ahmed
+2026-12-01
+09:30
+
+Expected:
+Appointment booked successfully. Appointment ID = 1 (if this is the first booking).
+
+Actual:
+Appointment booked successfully. Appointment ID = 1 (if this is the first booking).
+
+Status: PASS
+
+TC07 – Invalid appointment date
+Precondition: Patient ID 101 exists.
+
+Input:
+8
+101
+Dr Ahmed
+2026-02-30
+10:00
+
+Expected:
+Error: Invalid date. Use a valid date from 2000 to 2100.
+
+Actual:
+Error: Invalid date. Use a valid date from 2000 to 2100.
+
+Status: PASS
+
+TC08 – Invalid appointment time
+Precondition: Patient ID 101 exists.
+
+Input:
+8
+101
+Dr Ahmed
+2026-12-01
+07:30
+
+Expected:
+Error: Invalid time. Hospital hours are 08:00-19:59.
+
+Actual:
+Error: Invalid time. Hospital hours are 08:00-19:59.
+
+Status: PASS
+
+TC09 – Empty appointment queue
+Precondition: No scheduled appointments exist.
+
+Input:
+9
+
+Expected:
+Queue is empty. No appointment to process.
+
+Actual:
+Queue is empty. No appointment to process.
+
+Status: PASS
+
+TC10 – FIFO appointment processing
+Precondition: Book two appointments in this order: appointment 1, then appointment 2.
+
+Input:
+9
+
+Expected:
+Appointment 1 is processed first and its status becomes Completed.
+
+Actual:
+Appointment 1 is processed first and its status becomes Completed.
+
+Status: PASS
+
+TC11 – Cancel a scheduled appointment
+Precondition: Appointment ID 1 exists and has Scheduled status.
+
+Input:
+10
+1
+
+Expected:
+Appointment cancelled successfully. It is removed from the waiting queue.
+
+Actual:
+Appointment cancelled successfully. It is removed from the waiting queue.
+
+Status: PASS
+
+TC12 – Cancel an unavailable appointment
+Input:
+10
+999
+
+Expected:
+Error: Appointment not found. Cannot cancel unavailable appointment.
+
+Actual:
+Error: Appointment not found. Cannot cancel unavailable appointment.
+
+Status: PASS
+
+TC13 – Cancel an already completed appointment
+Precondition: Appointment ID 1 has Completed status.
+
+Input:
+10
+1
+
+Expected:
+Error: Appointment is already Completed. Only scheduled appointments can be cancelled.
+
+Actual:
+Error: Appointment is already Completed. Only scheduled appointments can be cancelled.
+
+Status: PASS
+
+TC14 – Delete patient with a scheduled appointment
+Precondition: Patient ID 101 has at least one Scheduled appointment.
+
+Input:
+3
+101
+
+Expected:
+Error: Patient has scheduled appointments. Cancel them first.
+
+Actual:
+Error: Patient has scheduled appointments. Cancel them first.
+
+Status: PASS
+
+TC15 – File persistence
+Steps:
+1. Register a patient and book an appointment.
+2. Exit using menu option 0.
+3. Start the program again.
+
+Expected:
+The patient and appointment records are loaded from patients.txt and appointments.txt.
+
+Actual:
+The patient and appointment records are successfully loaded from patients.txt and appointments.txt.
+
+Status: PASS
+
+TC16 – Appointment sorting
+Precondition: Book appointments on different dates/times.
+
+Input:
+12
+
+Expected:
+All appointments are displayed in ascending date/time order.
+
+Actual:
+All appointments are displayed in ascending date/time order.
+
+Status: PASS
+
+---
+
+TESTING SUMMARY
+
+Total Test Cases: 16
+
+Normal Test Cases: TC01, TC04, TC06, TC10, TC11, TC15, TC16
+
+Boundary and Invalid Input Test Cases: TC02, TC03, TC05, TC07, TC08, TC09, TC12, TC13, TC14
+
+Conclusion:
+The test cases cover normal operations and boundary conditions of the Hospital Appointment and Patient Management System. They verify patient registration, searching, appointment booking, FIFO queue processing, cancellation, sorting, and file persistence. They also check how the system handles duplicate patient IDs, invalid ages, invalid appointment details, an empty appointment queue, and unavailable appointments.

@@ -88,9 +88,20 @@ string toLower(string s) {
     return s;
 }
 
+
 bool validText(const string& s) {
-    return !trim(s).empty() && s.find('|') == string::npos;
+    string t = trim(s);
+
+    if (t.empty()) return false;
+
+    for (char c : t) {
+        if (!isalpha(static_cast<unsigned char>(c)) && c != ' ')
+            return false;
+    }
+
+    return true;
 }
+
 
 string readLine(const string& prompt) {
     cout << prompt;
